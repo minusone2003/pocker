@@ -12,6 +12,8 @@ shuffle(stuck)
 
 
 
+
+
 # визуализация
 def vi(arr):
     a=['Двойка','Тройка','Четверка','Пятерка','Шестерка','Семерка','Восьмерка','Девятка','Десятка','Валет','Дама','Король','Туз']
@@ -54,21 +56,10 @@ def fill(arr):
     for i in range(n_player):
         if arr[i]>scores[i]:
             scores[i]=arr[i]
-
-
-
-
  
 #каждая комбинация дает некое количество очков
 scores=[0 for i in range(n_player)]
 pre=[]
-pre=[]
-past=[]
-prescores=[]
-
-
-
-
 #старшая карта 100+x
 for i in range(len(desk)-1):
     for j in desk[i]:
@@ -76,19 +67,17 @@ for i in range(len(desk)-1):
 for i in range(n_player):
     pre[i]=max(pre[2*i],pre[2*i-1])+100
 fill(pre)
-
-
-
-
 #robit
 #пара,тройка,сет алгоритм 2.0(28)
+pre=[]
+past=[]
 prescores=[0 for i in range(n_player)]
+
 
 for j in desk[i]:
     pre.append(j[0])
 for j in desk[-1]:
     pre.append(j[0])
-pre=[2,2,3,3,3,4,4]
 pre.sort(reverse=True)
 print(pre,'!!')
 
@@ -127,7 +116,25 @@ print(past)
 #ветка ифов для определения комбо (другого сбособа не придумал)
 
 if len(past[0])==4:
-    prescores[current]=past[0][0]+800 #Каре
+    prescores[current]=past[0][0]+800 #Каре(800)
 elif len(past[0])==3 and len(past[1])==2:
-    prescores[current] = past[0][0]*1.3+past[1][0]*0.1+700
-print(prescores)
+    prescores[current] = past[0][0]*1.3+past[1][0]+700  #фуллхаус(700)
+elif len(past[0])==3:
+	prescores[current] = past[0][0]+400 #трипс(400)
+elif len(past[0])==2 and len(past[1])==2:
+	prescores[current] = past[0][0]*1.3+past[1][0]+300#2 пары или +170р(300)
+elif len(past[0])==2 and len(past[1])==1:
+	prescores[current] = past[0][0]+200 #(шм)пара (200)
+#сука андрей ты мне до сих пор 90р торчишь
+
+#стрит стритфлеш и роял флеш(нет блять,клеш рояль)
+
+fill(prescores)
+
+
+
+
+
+
+	
+
