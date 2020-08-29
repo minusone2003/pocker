@@ -199,19 +199,14 @@ def flesh(list: list):
 
 
 
+sorts=[hight_card, same, in_row, flesh]
+table=stuck[-1]
+
+
+for i in range(len(stuck)):
+        
 
 
 
-# Процедура игры
 
-out(0.5)
-print('Made by m1nus0ne')
-out(0.5)
-print('Покер')
-out(1)
-print('Именно он')
-out(0.5)
-print('Это мой первый проект, сделанный через слезы, stuckowerflow, пот и еще раз слезы, \n'
-	  'Он имеет пару недочетов в оптимизации, некоторых фишек самого покера, но на это poxui absolutno')
-out(2)
-print("Так, начнем. \nСколько человек играет?")
+
