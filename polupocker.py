@@ -5,10 +5,10 @@ from random import shuffle
 from time import sleep
 import os
 # генерация колоды - 1 число номинал, второе масть(aue)
-# Процедура игры
 
 
-stuck = [I for I in range(52)]
+
+stuck = [I for I in range(52)] #колода
 for i in range(52):
 	stuck[i] = [i // 4, i % 4]
 shuffle(stuck)
@@ -42,6 +42,8 @@ def pprint(arr):
 # раздача карт
 desk = []
 flag = True
+table=stuck[-1]#карты на столе
+
 while flag:
 	n_player = int(input('Введите количество игроков (максимум 4)'))
 	n_player = 4
@@ -54,7 +56,7 @@ for i in range(n_player):
 	desk.append(stuck[:2])
 	stuck = stuck[2:]
 
-desk.append(stuck[:5])
+desk.append(stuck[:5]) #все карты принимающие участие в раздаче(руки + стол)
 
 '''for i in  desk:
 	for j in i:
@@ -79,8 +81,8 @@ def hight_card(list):
 	return max(list[0][0], list[1][0]) + 100
 
 
-
 # паралельно провдим его и для карт на столе, чтобы убрать лишние комбинации
+
 def same(list: list):
 	'''пара,тройка,сет алгоритм 2.0(28)'''
 	list.sort(key=lambda a: a[0], reverse=True)
@@ -129,6 +131,17 @@ def same(list: list):
 		end = list[0][0] + 200  # (шм)пара (200)
 	# сука андрей ты мне до сих пор 90р торчишь
 	return end
+
+def a(b):
+	return b
+print(a([2]))
+
+
+
+
+
+
+
 
 
 def in_row(list: list):
@@ -199,11 +212,29 @@ def flesh(list: list):
 
 
 
-sorts=[hight_card, same, in_row, flesh]
-table=stuck[-1]
+combo=[hight_card, same, in_row, flesh]
+table=desk[-1]
+
+pprint(desk[:-1])
+for hand in range(len(desk)-1):#применяем все функции ко всем рукам()
+	for func in combo:
+		if func!='hight_card': #хотел сделать через декоратры? А ебись оно в рот!
+			print(desk[hand].extend(table))
+			scores[hand]=func(desk[hand].extend(table))
+		else:
+			print(desk[hand])
+			scores[hand] = func(desk[hand])
 
 
-for i in range(len(stuck)):
+
+print(scores)
+
+
+
+
+
+
+
         
 
 
